@@ -1,0 +1,46 @@
+<%- partial('../../layouts/topbar.ejs') %>
+
+<form action="/<%= route %>_store" method="post">
+    <div class="form-group">
+      <label for="exampleInputEmail1">Subject</label>
+      <input type="text" name="subject" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Subject">
+    </div>
+    <%- include("../../layouts/valid_msg.ejs",{name: "subject"}); %>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Body</label>
+      <input type="text" name="body" class="form-control" id="exampleInputPassword1" placeholder="Enter Body">
+    </div>
+    <%- include("../../layouts/valid_msg.ejs",{name: "bodyx`"}); %>
+     
+    <!-- <div class="form-group">
+        <label for="exampleInputPassword1">Select Type</label>
+        
+        <select name="users_type" class="form-control" aria-label="Default select example" onclick="changeSelect(this.value)">
+            <option value="1">All Users</option>
+            <option value="2">Individuals</option>
+        </select>
+    </div>
+
+    <div class="form-group d-none usersNotif">
+        <label for="exampleInputPassword1">Select Users</label>
+        
+        </div> -->
+    
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+<script>
+
+    function changeSelect(val){
+
+        if(val==2){
+            $('.usersNotif').removeClass('d-none').addClass('d-block');
+        }
+        else{
+            $('.usersNotif').removeClass('d-block').addClass('d-none');
+        }
+
+    }
+
+</script>

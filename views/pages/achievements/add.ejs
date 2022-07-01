@@ -1,0 +1,26 @@
+<%- partial('../../layouts/topbar.ejs') %>
+
+<form action="/<%= route %>_store" method="POST">
+    <div class="form-group">
+      <label for="exampleInputEmail1">Title</label>
+      <input type="text" name="title" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Title">
+    </div>
+    <%- include("../../layouts/valid_msg.ejs",{name: "title"}); %>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Text</label>
+      <input type="text" name="text" class="form-control" id="exampleInputPassword1" placeholder="Text">
+    </div>
+    <%- include("../../layouts/valid_msg.ejs",{name: "text"}); %>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Identifier</label>
+      <input type="text" name="identifier" class="form-control" id="exampleInputPassword1" placeholder="Identifier">
+    </div>
+    <%- include("../../layouts/valid_msg.ejs",{name: "identifier"}); %>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Value</label>
+      <input type="text" name="value" class="form-control" id="exampleInputPassword1" placeholder="Value">
+    </div>
+    <%- include("../../layouts/valid_msg.ejs",{name: "value"}); %>
+ 
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

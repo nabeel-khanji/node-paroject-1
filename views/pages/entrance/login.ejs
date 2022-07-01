@@ -1,0 +1,64 @@
+<style>
+   
+.body-container{
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+margin: 20%;  
+    display: flex;
+    flex-wrap: wrap;
+}
+</style>
+
+<body class="p-0">
+
+
+    <div class=" parent-body container ">
+        <div class="body-container  row">
+            
+                <div class="form-wrap">
+                    
+
+                    <form action="/api/v1/entrance/login" method="POST">
+                        <div class="head_step mg-b-30">
+                            <h2><%= __('Web Admin Panel') %></h2>
+                        </div>
+                        <input type="hidden" name="_csrf" value="<%- _csrf %>"/>
+                        <div class="wrap">
+                            <div class="form-group mg-b-30">
+                                <input id="emailAddress" placeholder="<%= __('email') %>" name="emailAddress" type="email" class="form-control" required value=""/>
+                            </div>
+
+                            <div class="form-group m-0">
+                                <input type="password" placeholder="<%= __('password') %>" class="form-control user-pwd" id="password" name="password" required value="">
+                                <span toggle="#user_pwd" class="toggle-password eye-close"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group m-0">
+                            <p style="color:red; margin-top: 5px; text-align: center"><%= (req.query.res == 0) ? __('invalid_credentials') : "" %></p>
+
+                            
+                            <button type="submit"
+                                    class="btn  bg-fadedOrange d-flex align-items-center justify-content-center"><%= __('login') %>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="<%= sails.config.custom.baseUrl %>/assets/bower_components/jquery/dist/jquery.min.js"></script>
+
+<script type="text/javascript">
+    $(document).on('click', '.eye-close', function () {
+
+
+        var input = $("#password");
+        input.attr('type') === 'password' ? input.attr('type', 'text') : input.attr('type', 'password')
+    });
+</script>
+</body>
+
+

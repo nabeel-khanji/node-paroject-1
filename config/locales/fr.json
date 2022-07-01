@@ -1,0 +1,10 @@
+{
+  "Welcome": "Welcome",
+  "A brand new app.": "A brand new app.",
+  "api.phone_verification.twilio_success": "api.phone_verification.twilio_success",
+  "api.email_verification.success": "A code has been sent to your email.",
+  "api.phone_verification.twilio_authy_error": "api.phone_verification.twilio_authy_error",
+  "api.user.welcome": "api.user.welcome",
+  "general_pronoun_we": "We",
+  "general_pronoun_i": "I"
+}

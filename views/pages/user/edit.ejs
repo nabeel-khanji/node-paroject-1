@@ -1,0 +1,40 @@
+<%- include('../../layouts/topbar.ejs') %>
+<% console.log('edit data',data); %> 
+
+    
+
+<form action="/<%= route %>_update" method="post">
+    <div  ><%- include("../../layouts/flash_msg"); %>
+    </div> <div class="form-group">
+      <label for="exampleInputEmail1">Name</label>
+      <input type="text" name="name" value="<%= data.name %>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Name">
+    </div>
+    <%- include("../../layouts/valid_msg.ejs",{name: "name"}); %>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Email</label>
+      <input type="text" readonly name="emailAddress" class="form-control" value="<%= data.emailAddress %>" id="exampleInputPassword1" placeholder="Email">
+    </div>
+    <%- include("../../layouts/valid_msg.ejs",{name: "emailAddress"}); %>
+    <div class="form-group usersNotif">
+        <label for="exampleInputPassword1">Select Country</label>
+        
+        
+        <select name="country_id" class="form-control" aria-label="Default select example" >
+            <% countries.forEach(function(country) { %>
+                <option
+                <%= country.name==data.country?"selected":"" %>
+                         
+                        data-value="<%= country.id; %>"
+                        value="<%= country.id; %>"
+                          
+                >
+                    <%= country.name; %>
+                </option>
+            <% }); %>
+        </select>
+    </div> 
+    <%- include("../../layouts/valid_msg.ejs",{name: "country"}); %>
+    <input type="hidden" value="<%= data.id %>" name="id" />
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+

@@ -1,0 +1,61 @@
+<style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+  
+    .avatar {
+      vertical-align: middle;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+    }
+    .nav-container {
+      width: 100%;
+      /* background-color: black; */
+      flex-direction: row;
+      flex-wrap: wrap;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .nav-container a,img,form{
+        margin-left: 30px !important;
+    }
+    .nav-logo {
+      width: 50px;
+      height: 50px;
+    }
+  </style>
+
+
+  <div>
+    <nav>
+      <ul class="nav-container navbar-nav">
+        <!-- <div class="nav-logo"  >Dashboard</div> -->
+        <img
+          class="nav-logo"
+          src="/assets/img/App icon 1024.png"
+          alt="logo"
+        />
+    
+        <a href="/" class="nav-link">Dashboard</a>
+        <a href="/users" class="nav-link">User Management</a>
+        <!-- <a href="/RingsColor" class="nav-link">Rings Color</a> -->
+        <a href="/achievements" class="nav-link">Achievements</a>
+        <a href="/notifications" class="nav-link">Push Notification</a>
+        <!-- <a href="/Gameplay" class="nav-link">Gameplay Time</a> -->
+        <a href="/privacy" class="nav-link">Privacy</a>
+      
+        <form action="/logout" method="POST">
+          <button class="btn btn-dark" type="submit">logout</button>
+        </form>  <img
+        src="https://www.simplilearn.com/ice9/free_resources_article_thumb/what_is_image_Processing.jpg"
+        alt="Avatar"
+        class="avatar"
+      />
+      </ul>
+    </nav>
+  
+  </div>
+  

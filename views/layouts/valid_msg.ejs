@@ -1,0 +1,10 @@
+<% if (typeof valid_errors!='undefined') { %> 
+    <% valid_errors.forEach(function (error) { %> 
+        <div class="text-danger" role="alert">
+            <% if (error.param==name) {%>
+            <%= error.msg %>
+     <%       } %> 
+           
+        </div>
+    <% }); %>
+<% } %>

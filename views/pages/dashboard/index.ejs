@@ -1,0 +1,95 @@
+
+
+<div class="container">
+  <%- partial('../../layouts/topbar.ejs') %>
+
+  <%- partial('../../layouts/datatable.ejs') %>
+
+  <div class="row container">
+    <div class="element-box pg-25">
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-header border-0">
+            <div class="d-flex justify-content-between">
+              <h3 class="card-title"></h3>
+
+              <a href="javascript:void(0);">View Report</a>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="d-flex">
+              <p class="d-flex flex-column">
+                <span>Games</span>
+              </p>
+              <p class="d-flex flex-column">
+                <span class="text-bold text-lg"></span>
+              </p>
+              <p class="ml-auto d-flex flex-column text-right">
+                <span class="text-success">
+                  <i class="fas fa-arrow-up"></i> 12.5%
+                </span>
+                <span class="text-muted">Since last Month</span>
+              </p>
+            </div>
+            <!-- /.d-flex -->
+
+            <div class="position-relative mb-4">
+              <canvas
+                id="visitors-chart"
+                height="200"
+                width="569"
+                style="display: block; width: 569px; height: 200px"
+                class="chartjs-render-monitor"
+              ></canvas>
+            </div>
+            <span style="padding-left: 250px; font-weight: bold"
+              >Number of Games Played</span
+            >
+
+            <div class="d-flex flex-row justify-content-end">
+              <span class="mr-2">
+                <i class="fas fa-square text-primary" style="padding-top: 20px">
+                  ::before</i
+                >
+                This Month
+              </span>
+
+              <span>
+                <i class="fas fa-square text-gray"> ::before </i> Last Month
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="card card-danger">
+          <div class="card-body">
+            <canvas
+              id="pieChart"
+              style="
+                min-height: 293px;
+                height: 293px;
+                max-height: 293px;
+                min-width: 700px;
+                max-width: 700px;
+              "
+            ></canvas>
+            <div
+              style="padding-left: 290px; padding-top: 20px; font-weight: bold"
+            >
+              Number Of Players
+            </div>
+          </div>
+
+          <!-- /.card-body -->
+        </div>
+      </div>
+      <!-- /.card -->
+    </div>
+    
+
+    <!-- /.card -->
+  </div>
+</div>
+<!-- /.col (LEFT) -->
+<div class="col-md-6"></div>

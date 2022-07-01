@@ -1,0 +1,379 @@
+
+<body class="menu-position-side menu-side-left full-screen with-content-panel">
+<%- partial('../../layouts/profile_details_popup.ejs') %>
+<div class="all-wrapper with-side-panel solid-bg-all">
+  <%- partial('../../layouts/search-with-suggestion.ejs') %>
+  <div class="layout-w">
+    <%- partial('../../layouts/sidebar.ejs') %>
+    <div class="content-w">
+
+      <%- partial('../../layouts/top-bar.ejs') %>
+
+      <%- partial('../../layouts/breadcrumbs.ejs', {breadcrumbs: breadcrumbs}) %>
+
+      <div class="content-i">
+        <div class="content-box">
+          <%- partial('../../components/alerts.ejs', {messages: req.session.messages}) %>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="element-wrapper">
+                <div class="element-actions">
+                  <form class="form-inline justify-content-sm-end">
+                    <select class="form-control form-control-sm rounded" id="user_stats_filter">
+                      <option value="today">
+                        Now
+                      </option>
+                      <option value="last_week">
+                        Last Week
+                      </option>
+                      <option value="last_month">
+                        Last 30 Days
+                      </option>
+                    </select>
+                  </form>
+                </div>
+                <h6 class="element-header">
+                  Users
+                </h6>
+                <%- partial('../../layouts/app_users_stats.ejs') %>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12 col-xxxl-9">
+              <div class="element-wrapper">
+                <h6 class="element-header">
+                  Users Register Graph
+                </h6>
+                <div class="element-box">
+                  <div class="os-tabs-w">
+                    <div class="os-tabs-controls">
+                      <ul class="nav nav-tabs smaller">
+                        <li class="nav-item">
+                          <a class="nav-link active" data-toggle="tab" href="#tab_overview">Users (Register)</a>
+                        </li>
+                      </ul>
+                      <ul class="nav nav-pills smaller d-none d-md-flex">
+                        <li class="nav-item" data-value="7">
+                          <a class="nav-link active" data-toggle="tab"href="#tab_overview">7 Days</a>
+                        </li>
+                        <li class="nav-item" data-value="14">
+                          <a class="nav-link" data-toggle="tab" href="#tab_overview">14 Days</a>
+                        </li>
+                        <li class="nav-item" data-value="30">
+                          <a class="nav-link" data-toggle="tab" href="#tab_overview">30 Days</a>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="tab-content">
+                      <div class="tab-pane active" id="tab_overview">
+                        <div class="el-tablo bigger">
+                          <div class="label">
+                            Total Users
+                          </div>
+                          <div class="userCount value">
+
+                          </div>
+                        </div>
+                        <div id="graph-container">
+                          <div class="el-chart-w"><div style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;" class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div> </div>
+                          <canvas height="286" id="lineChart1" width="1145" style="display: block; width: 1145px; height: 286px;" class="chartjs-render-monitor"></canvas>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="element-wrapper">
+                <h6 class="element-header">
+                  New Users (Latest)
+                </h6>
+                <div class="element-box-tp">
+                  <!--------------------
+                  START - Controls Above Table
+                  -------------------->
+                  <div class="controls-above-table d-none">
+                    <div class="row">
+                      <!--<div class="col-sm-6">-->
+                        <!--<a class="btn btn-sm btn-secondary" href="#">Download CSV</a>&lt;!&ndash;<a class="btn btn-sm btn-secondary" href="#">Archive</a><a class="btn btn-sm btn-danger" href="#">Delete</a>&ndash;&gt;-->
+                      <!--</div>-->
+                      <div class="col-sm-6">
+                        <form class="form-inline justify-content-sm-end">
+                          <input class="form-control form-control-sm rounded bright" placeholder="Search" type="text"><select class="form-control form-control-sm rounded bright">
+                            <option selected="selected" value="">
+                              Select Status
+                            </option>
+                            <option value="Pending">
+                              Pending
+                            </option>
+                            <option value="Active">
+                              Active
+                            </option>
+                            <option value="Cancelled">
+                              Cancelled
+                            </option>
+                          </select>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                  <!--------------------
+                  END - Controls Above Table
+                  ------------------          --><!--------------------
+                      START - Table with actions
+                      ------------------  -->
+                  <div class="table-responsive">
+                    <table id="dataTableDashboard" class="table table-striped table-lightfont">
+                      <thead>
+                      <tr>
+                        <th>
+                          User Name
+                        </th>
+                        <th>
+                          Phone
+                        </th>
+                        <th>
+                          Registration Date
+                        </th>
+                        <th>
+                          Social/Manual
+                        </th>
+                        <th>
+                          Profile Picture
+                        </th>
+                        <th>
+                          Actions
+                        </th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <% _.each(users, function (user, index) { %>
+                      <tr>
+                        <td><a href="/users/<%= user.id %>"><%=  user.name   %> </a></td>
+                        <td><%=  user.phone_number %></td>
+                        <% d = new Date(user.createdAt).toLocaleDateString("en-US") %>
+                        <td class=""><%= d; %> </td>
+                        <td class="">
+                          <% if(user.socialLogin && user.socialLogin == '1'){ %>
+                          <div data-title="Active" data-toggle="tooltip">
+                                      <span>
+                                        Social
+                                      </span>
+                          </div>
+                          <% } else{ %>
+                          <div data-title="InActive" data-toggle="tooltip">
+                                        <span>
+                                            Manual
+                                          </span>
+                          </div>
+                          <% } %>
+
+                        </td>
+                        <td class=""> <div class="avatar-w"><img src="<%= user.thumb_url %>" alt="Not Available"  width="75px" /></div> </td>
+                        <td class="row-actions text-left">
+                          <a href="/users/<%= user.id %>"><i class="icon-feather-eye"></i></a>
+                          <!-- <a href="#"><i class="icon-feather-edit"></i></a> -->
+                          <!--<a class="danger" href="/users/delete/<%= user.id %>" onclick="return confirm('Are you sure?')" ><i class="icon-feather-x"></i></a>-->
+                        </td>
+                      </tr>
+                      <% }); %>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <%- partial('../../layouts/color-scheme-toggler.ejs')%>
+          <%- partial('../../layouts/demo-customizer.ejs')%>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="display-type"></div>
+</div>
+<%- partial('../../layouts/scripts.ejs') %>
+</body>
+<%- partial('../../layouts/app_users_stats_script.ejs') %>
+
+
+
+<script>
+
+  $(document).ready(function(){
+
+    $('.nav-pills li').click(function () {
+      $('#lineChart1').remove();
+      $('#graph-container').append('<canvas height="286" id="lineChart1" width="1145" style="display: block; width: 1145px; height: 286px;" class="chartjs-render-monitor"></canvas>')
+      let value = $(this).data('value');
+      $('.ajax-loader').show();
+      $.ajax({
+        url: '/users/graph_data',
+        method: 'POST',
+        data:{'value': value},
+        success: function(response){
+          $('.ajax-loader').hide();
+
+          var labels = prepare_graph_label(response['filter_start_date'], response['filter_end_date'])
+          var graph_data =  prepare_graph_data(response['graphusers'], labels, response['value'])
+          renderchart(graph_data);
+
+        }, error: function(error){
+          console.log("Error");
+          console.log(error);
+        }
+      });
+    });
+
+    var prepare_graph_label = function(filter_start_date, filter_end_date) {
+      let data = {}
+      for (var d = new Date(filter_start_date); d <= new Date(filter_end_date) ; d.setDate(d.getDate() + 1)) {
+        k = d.toLocaleString('en-US', {
+          //weekday: 'short',
+          year: 'numeric',
+          month: 'numeric',
+          day: 'numeric'
+        })
+        data[k] = []
+      }
+      return data;
+    }
+
+
+    var prepare_graph_data = function(graphusers, data, value){
+
+      graphusers.map((user, index) => {
+        g = new Date(user['createdAt']);
+        k = g.toLocaleString('en-US', {
+          // weekday: 'short',
+          year: 'numeric',
+          month: 'numeric',
+          day: 'numeric'
+        })
+
+        d = Math.floor(g.getTime()/(1000*60*60*value));
+        data[k]=data[k]||[];
+        data[k].push(user['id']);
+      })
+
+      return data;
+    }
+
+    var renderchart = function(response) {
+
+      var users = response;
+      var labels = Object.keys(users);
+      var data = []
+      var sum = 0
+      for(usercount in users) {
+        count = users[usercount].length
+        data.push(count)
+        sum += count;
+      }
+
+
+      if ($("#lineChart1").length) {
+        var lineChart = $("#lineChart1");
+        var lineData = {
+          labels: labels,
+          datasets: [{
+            label: "Total User Register",
+            fill: false,
+            lineTension: 0.3,
+            backgroundColor: "#fff",
+            borderColor: "#047bf8",
+            borderCapStyle: 'butt',
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'miter',
+            pointBorderColor: "#fff",
+            pointBackgroundColor: "#141E41",
+            pointBorderWidth: 3,
+            pointHoverRadius: 10,
+            pointHoverBackgroundColor: "#FC2055",
+            pointHoverBorderColor: "#fff",
+            pointHoverBorderWidth: 3,
+            pointRadius: 5,
+            pointHitRadius: 10,
+            data: data,
+            spanGaps: true
+          }]
+        };
+
+        // line chart init
+        var myLineChart = new Chart(lineChart, {
+          type: 'line',
+          data: lineData,
+          options: {
+            legend: {
+              display: false
+            },
+            scales: {
+              xAxes: [{
+                ticks: {
+                  fontSize: '11',
+                  fontColor: '#969da5',
+                  beginAtZero: true,
+                },
+                gridLines: {
+                  display:true
+                }
+              }],
+              yAxes: [{
+                display: true,
+                ticks: {
+                  beginAtZero: true,
+                  max: parseInt(Math.max.apply(null,data)),
+                  min: 0,
+                  userCallback: function(label, index, labels) {
+                    // when the floored value is the same as the value we have a whole number
+                    if (Math.floor(label) === label) {
+                      return label;
+                    }
+
+                  }
+                },
+                gridLines: {
+                  display:false
+                }
+              }]
+            }
+          }
+        });
+      }
+
+      $('.userCount').text(sum);
+
+    }
+
+    if ($('#dataTable2').length) {
+      $('#dataTable2').DataTable({
+        //dom: 'Bflrtip',
+//        buttons: [ {
+//          extend: 'csv',
+//          text: 'Download CSV',
+//          className: 'btn btn-sm btn-secondary',
+//          exportOptions: {
+//            columns: 'th:not(:last-child)'
+//          }
+//        }
+//        ],
+        "bInfo" : false,
+        "order": [[ 2, "desc" ]],
+        "lengthMenu": [[5,10, 25, 50, 100, -1],[5,10, 25, 50, 100, 'All']]
+      });
+    }
+
+    $('.nav-pills li').first().click();
+
+  });
+
+</script>

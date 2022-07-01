@@ -1,0 +1,42 @@
+
+
+    <form action="<%= typeof update!='undefined'? `/editUser/${user.id}`:"addUser" %>"   method="post">
+        <div style="margin: 0 auto; max-width: 500px;">
+            <h3 class="form-group" style="margin-top: 20px;"><%= typeof update!='undefined'?update:"Add" %> User</h3>
+    <div class="form-group">
+                    <label>User Name</label>
+                    <input name="name" type="text" id="username" class="form-control"
+                    value="<%= typeof user != 'undefined' ? user.name : '' %>"
+                    >
+                </div>
+                <%- include("../../layouts/valid_msg.ejs",{name: "name"}); %>
+                <div>
+                    <label> Country </label>
+                    <select  name="country" id="Country" style="margin-left: 10px;">
+                        <option value="Pakistan">Pakistan</option>
+                        <option value="India">India</option>
+                        <option value="China">China</option>
+                        <option value="Afghanistan">Afghanistan</option>
+                    </select>
+                </div>
+                <div>
+                    <label> State </label>
+                    <select name="state" id="State" style="text-align: left; margin-left: 30px; " >
+                        <option value="Sindh">Sindh</option>
+                        <option value="Punjab">Punjab</option>
+                        <option value="Balochistan">Balochistan</option>
+                        <option value="KPK">KPK</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="inputEstimatedDuration">Email</label>
+                    <input
+                    value="<%= typeof user != 'undefined' ? user.emailAddress : '' %>"
+                    name='emailAddress' type="emailAddress" id="inputEstimatedDuration" class="form-control">
+                </div>
+                <%- include("../../layouts/valid_msg.ejs",{name: "email"}); %>
+                <button type="submit" style="margin-left: 200px;" ><%= typeof update!='undefined'?update:"Save" %> User</button>
+            </div>
+    </form>
+</div>
+    

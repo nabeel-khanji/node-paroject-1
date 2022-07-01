@@ -1,0 +1,21 @@
+<%- partial('../../layouts/topbar.ejs') %>
+
+<div class="container" style="">
+    <h3 style="">Privacy</h3>
+</div>
+<div  class="container" style="">
+    <div style=" ">
+        <form  action="<%=  `/editPrivacy/${data.id}` %>" method="post">
+            <textarea    id="summernote" name="name"   
+            >
+        <%= data.name  %> 
+        </textarea>
+       <button class="btn btn-dark" type="submit">
+           Edit Policy
+       </button>
+       
+        </form>
+           </div>
+</div>
+
+<!-- include summernote css/js -->
